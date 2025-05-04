@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FaEdit, FaTrash, FaSave } from "react-icons/fa";
 
-
 function TodoItem({ todo, onToggle, onDelete, onEdit }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(todo.text);
@@ -53,17 +52,31 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }) {
           autoFocus
         />
       ) : (
-        <span
-          style={{
-            flex: 1,
-            textDecoration: todo.completed ? "line-through" : "none",
-            color: todo.completed ? "#999" : "#333",
-            transition: "color 0.3s ease, text-decoration 0.3s ease",
-            fontSize: "16px",
-          }}
-        >
-          {todo.text}
-        </span>
+        <div style={{ flex: 1 }}>
+          <span
+            style={{
+              display: "block",
+              textDecoration: todo.completed ? "line-through" : "none",
+              color: todo.completed ? "#999" : "#333",
+              fontSize: "16px",
+              marginBottom: "4px",
+            }}
+          >
+            {todo.text}
+          </span>
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#777",
+              background: "#eee",
+              padding: "2px 8px",
+              borderRadius: "10px",
+              display: "inline-block",
+            }}
+          >
+            {todo.category}
+          </span>
+        </div>
       )}
 
       {isEditing ? (
@@ -71,7 +84,7 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }) {
           onClick={handleSave}
           className="icon-btn save"
           style={{
-            fontSize:'14px',
+            fontSize: "14px",
             background: "#2ecc71",
             border: "none",
             color: "white",
@@ -88,7 +101,7 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }) {
           onClick={handleEdit}
           className="icon-btn edit"
           style={{
-            fontSize:'14px',
+            fontSize: "14px",
             background: "#3498db",
             border: "none",
             color: "white",
@@ -106,7 +119,7 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }) {
         onClick={() => onDelete(todo.id)}
         className="icon-btn delete"
         style={{
-          fontSize:'14px',
+          fontSize: "14px",
           background: "#e74c3c",
           border: "none",
           color: "white",
@@ -116,7 +129,7 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }) {
           transition: ".5s",
         }}
       >
-       <FaTrash />
+        <FaTrash />
       </button>
     </div>
   );
